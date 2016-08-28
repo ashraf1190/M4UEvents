@@ -1,4 +1,4 @@
-package activity;
+package com.m4uevents.uashraf.m4uevents;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,9 +13,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.m4uevents.uashraf.m4uevents.MyAppWebViewClient;
-import com.m4uevents.uashraf.m4uevents.R;
-import com.m4uevents.uashraf.m4uevents.WebAppInterface;
 
 
 public class MainActivity extends AppCompatActivity {
