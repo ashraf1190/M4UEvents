@@ -129,7 +129,7 @@ public class FragmentDrawer extends Fragment {
         public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
             this.clickListener = clickListener;
             gestureDetector = new GestureDetector(context, new GestureDetector(.SimpleOnGestureListener(){
-                // PIckup from here **************
+                // PIckup from here *****************
 
             } )
         }
