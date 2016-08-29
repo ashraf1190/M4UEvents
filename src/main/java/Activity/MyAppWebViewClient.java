@@ -1,4 +1,4 @@
-package com.m4uevents.uashraf.m4uevents;
+package Activity;
 
 import android.content.Intent;
 import android.net.Uri;

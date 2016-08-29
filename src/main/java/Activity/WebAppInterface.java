@@ -1,4 +1,4 @@
-package com.m4uevents.uashraf.m4uevents;
+package Activity;
 
 import android.content.Context;
 import android.webkit.JavascriptInterface;
