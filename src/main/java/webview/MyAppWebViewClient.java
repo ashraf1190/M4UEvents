@@ -1,4 +1,4 @@
-package activity;
+package webview;
 
 import android.content.Intent;
 import android.net.Uri;
