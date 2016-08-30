@@ -6,13 +6,19 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebViewClient;
 
 import com.m4uevents.uashraf.m4uevents.R;
 
 import navigationdrawer.MyAdapter;
+import webview.MyAppWebViewClient;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -39,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
 
     ActionBarDrawerToggle mDrawerToggle;                  // Declaring Action Bar Drawer Toggle
 
-
+    WebView mWebView;
 
 
     @Override
@@ -52,6 +58,24 @@ public class MainActivity extends ActionBarActivity {
      */
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+        mWebView = (WebView) findViewById(R.id.activity_main_webview);
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        mWebView.loadUrl("http://m4uevents.com/");
+        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.setWebViewClient(new MyAppWebViewClient());
+        mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
+        mWebView.getSettings().setLoadWithOverviewMode(true);
+        mWebView.getSettings().setUseWideViewPort(true);
+
+
+
+
+
+
+
+
 
 
 
@@ -101,6 +125,15 @@ public class MainActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.action_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
+            mWebView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
