@@ -1,4 +1,4 @@
-package Activity;
+package activity;
 
 import android.content.Intent;
 import android.net.Uri;

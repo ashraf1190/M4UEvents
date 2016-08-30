@@ -1,13 +1,15 @@
-package Activity;
+package activity;
 
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
-
+import activity.FragmentDrawer;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -16,12 +18,12 @@ import android.widget.Toast;
 import com.m4uevents.uashraf.m4uevents.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
 
 
     private Toolbar toolbar;
-
+    private FragmentDrawer drawerFragment;
 
     private WebView mWebView;
 
@@ -47,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
         mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.getSettings().setUseWideViewPort(true);
+
+        drawerFragment = (FragmentDrawer)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+        drawerFragment.setDrawerListener(this);
 
         }
 
@@ -92,4 +99,7 @@ public class MainActivity extends AppCompatActivity {
         // system behavior (probably exit the activity)
         return super.onKeyDown(keyCode, event);
     }
+  @Override
+public void onDrawerItemSelected(View view, int postision) {
+}
 }
