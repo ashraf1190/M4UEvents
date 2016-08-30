@@ -14,6 +14,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.m4uevents.uashraf.m4uevents.R;
 
@@ -26,14 +27,14 @@ public class MainActivity extends ActionBarActivity {
     //First We Declare Titles And Icons For Our Navigation Drawer List View
     //This Icons And Titles Are holded in an Array as you can see
 
-    String TITLES[] = {"Home","Events","Mail","Shop","Travel"};
-    int ICONS[] = {R.mipmap.ic_home, R.drawable.ic_event,R.mipmap.ic_messenger,R.mipmap.ic_locations,R.mipmap.ic_travel};
+    String TITLES[] = {"Home", "Events", "Mail", "Shop", "Travel"};
+    int ICONS[] = {R.drawable.ic_home, R.drawable.ic_event, R.drawable.ic_messenger, R.drawable.ic_locations, R.drawable.ic_travel};
 
     //Similarly we Create a String Resource for the name and email in the header view
     //And we also create a int resource for profile picture in the header view
 
     String NAME = "Umer Ashraf";
-    String EMAIL = "uashraf@.com";
+    String EMAIL = "uashraf@m4uevents.com";
     int PROFILE = R.mipmap.ic_me;
 
     private Toolbar toolbar;                              // Declaring the Toolbar Object
@@ -70,21 +71,11 @@ public class MainActivity extends ActionBarActivity {
         mWebView.getSettings().setUseWideViewPort(true);
 
 
-
-
-
-
-
-
-
-
-
-
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
 
         mRecyclerView.setHasFixedSize(true);                            // Letting the system know that the list objects are of fixed size
 
-        mAdapter = new MyAdapter(TITLES,ICONS,NAME,EMAIL,PROFILE);       // Creating the Adapter of MyAdapter class(which we are going to see in a bit)
+        mAdapter = new MyAdapter(TITLES, ICONS, NAME, EMAIL, PROFILE);       // Creating the Adapter of MyAdapter class(which we are going to see in a bit)
         // And passing the titles,icons,header view name, header view email,
         // and header view profile picture
 
@@ -96,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);        // Drawer object Assigned to the view
-        mDrawerToggle = new ActionBarDrawerToggle(this,Drawer,toolbar,R.string.drawer_open,R.string.drawer_close){
+        mDrawerToggle = new ActionBarDrawerToggle(this, Drawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -112,9 +103,8 @@ public class MainActivity extends ActionBarActivity {
             }
 
 
-
         }; // Drawer Toggle Object Made
-        Drawer.setDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
+        Drawer.addDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
         mDrawerToggle.syncState();               // Finally we set the drawer toggle sync State
 
     }
@@ -138,16 +128,19 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.action1:
+                Toast.makeText(this, "This will do action 1", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_search:
+                Toast.makeText(this, "This will search events", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_events:
+                Toast.makeText(this, "This will Create Events", Toast.LENGTH_SHORT).show();
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action1) {
-            return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
