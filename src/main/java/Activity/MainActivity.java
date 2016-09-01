@@ -1,8 +1,8 @@
 package activity;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,13 +16,15 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.m4uevents.uashraf.m4uevents.R;
 
 import navigationdrawer.MyAdapter;
 import webview.MyAppWebViewClient;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
+
 
     //First We Declare Titles And Icons For Our Navigation Drawer List View
     //This Icons And Titles Are holded in an Array as you can see
@@ -53,6 +55,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseCrash.report(new Exception("this is a test error"));
+
 
     /* Assinging the toolbar object ot the view
     and setting the the Action bar to our toolbar

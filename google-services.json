@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "327238188706",
+    "firebase_url": "https://m4uevents-47903.firebaseio.com",
+    "project_id": "m4uevents-47903",
+    "storage_bucket": "m4uevents-47903.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327238188706:android:babb387fb4cdef0c",
+        "android_client_info": {
+          "package_name": "com.m4uevents.uashraf.m4uevents"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327238188706-criv7533trfoh9mp6t6cap7qftgltige.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASXO_ACTb5kWTBm3CWRGxUBvydVCGUiAM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
