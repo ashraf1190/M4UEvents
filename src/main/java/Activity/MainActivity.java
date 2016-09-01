@@ -1,4 +1,5 @@
 package activity;
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,12 +15,14 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.m4uevents.uashraf.m4uevents.R;
 
 import navigationdrawer.MyAdapter;
+import settings.SettingsActivity;
 import webview.MyAppWebViewClient;
 
 
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     //First We Declare Titles And Icons For Our Navigation Drawer List View
     //This Icons And Titles Are holded in an Array as you can see
 
-    String TITLES[] = {"Home", "Events", "Mail", "Shop", "Travel"};
+    String TITLES[] = {"Home", "Events", "Mail", "Warehouse", "Travel"};
     int ICONS[] = {R.drawable.ic_home, R.drawable.ic_event, R.drawable.ic_messenger, R.drawable.ic_locations, R.drawable.ic_travel};
 
     //Similarly we Create a String Resource for the name and email in the header view
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     WebView mWebView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     /* Assinging the toolbar object ot the view
     and setting the the Action bar to our toolbar
      */
+
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
@@ -87,54 +90,61 @@ public class MainActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);                 // Creating a layout Manager
 
-        mRecyclerView.setLayoutManager(mLayoutManager);                 // Setting the layout Manager
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
 
-        Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);        // Drawer object Assigned to the view
-        mDrawerToggle = new ActionBarDrawerToggle(this, Drawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
+
+                // Setting the layout Manager
+
+
+                Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);        // Drawer object Assigned to the view
+                mDrawerToggle = new ActionBarDrawerToggle(this, Drawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
+
+                    @Override
+                    public void onDrawerOpened(View drawerView) {
+                        super.onDrawerOpened(drawerView);
+                        // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
+                        // open I am not going to put anything here)
+                    }
+
+                    @Override
+                    public void onDrawerClosed(View drawerView) {
+                        super.onDrawerClosed(drawerView);
+                        // Code here will execute once drawer is closed
+                    }
+
+
+                }; // Drawer Toggle Object Made
+                Drawer.addDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
+                mDrawerToggle.syncState();               // Finally we set the drawer toggle sync State
+
+            }
+
 
             @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
-                // open I am not going to put anything here)
+            public boolean onCreateOptionsMenu(Menu menu) {
+                // Inflate the menu; this adds items to the action bar if it is present.
+                getMenuInflater().inflate(R.menu.action_menu, menu);
+                return true;
             }
 
             @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                // Code here will execute once drawer is closed
+            public boolean onKeyDown(int keyCode, KeyEvent event) {
+                if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
+                    mWebView.goBack();
+                    return true;
+                }
+                return super.onKeyDown(keyCode, event);
             }
-
-
-        }; // Drawer Toggle Object Made
-        Drawer.addDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
-        mDrawerToggle.syncState();               // Finally we set the drawer toggle sync State
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.action_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && mWebView.canGoBack()) {
-            mWebView.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+
+
             case R.id.action1:
-                Toast.makeText(this, "This will do action 1", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_search:
                 Toast.makeText(this, "This will search events", Toast.LENGTH_SHORT).show();

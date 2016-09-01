@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#363cb3</color>
-    <color name="m4ucolor">#c6c2c2</color>
+    <color name="colorPrimary">#000000</color>
+    <color name="m4ucolor">#26a69a</color>
     <color name="colorPrimaryDark">#a6585e</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
-    <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#000000</color>
+    <color name="navigationBarColor">#b90b0b</color>
+    <color name="colorAccent">#83131b</color>
 
 
 
