@@ -6,6 +6,7 @@ package activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.m4uevents.uashraf.m4uevents.R;
+
+import cardsview.CardActivity;
 
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -162,6 +165,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                         break;
                     case 1:
                         context.startActivity(new Intent(context, MainActivity.class));
+                        break;
+                    case 2:
+                        context.startActivity(new Intent(context, CardActivity.class));
                         break;
                 }
             }
