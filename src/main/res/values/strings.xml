@@ -39,6 +39,17 @@
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="forgot_password_msg">We just need your registered Email Address to sent you password reset instructions.</string>
 
+    <string name="facebook_status_fmt">Facebook User: %s</string>
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="facebook_app_id">202415383511682</string>
+    <string name="desc_google_sign_in">Google Sign</string>
+    <string name="desc_facebook_login">Use a Facebook Login</string>
+    <string name="desc_emailpassword">Use an email and password</string>
+
+
+
+
 
 
 

@@ -1,6 +1,8 @@
 package activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.provider.MediaStore;
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,9 +20,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
-
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.crash.FirebaseCrash;
 import com.m4uevents.uashraf.m4uevents.R;
+import login.LoginActivity;
 
 import webview.MyAppWebViewClient;
 
@@ -52,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     WebView mWebView;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.addJavascriptInterface(new WebAppInterface(this), "Android");
         mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.getSettings().setUseWideViewPort(true);
-    /* Assinging the toolbar object ot the view
-    and setting the the Action bar to our toolbar
-     */
+
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -133,14 +138,13 @@ public class MainActivity extends AppCompatActivity {
                 // Setting the layout Manager
 
 
-                Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);        // Drawer object Assigned to the view
+                Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);
                 mDrawerToggle = new ActionBarDrawerToggle(this, Drawer, toolbar, R.string.drawer_open, R.string.drawer_close) {
 
                     @Override
                     public void onDrawerOpened(View drawerView) {
                         super.onDrawerOpened(drawerView);
-                        // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
-                        // open I am not going to put anything here)
+
                     }
 
                     @Override
@@ -203,4 +207,6 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }
